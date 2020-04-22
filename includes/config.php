@@ -3,7 +3,7 @@
 
 // Configuration bdd
 $host = "localhost";
-$dbname = "entrainementphpbdd";
+$dbname = "reseaux";
 $userBdd = "root";
 $passBdd = "";
 $optionBdd = [];

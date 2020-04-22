@@ -11,16 +11,13 @@
         <div class="modal-body">
             <form action="inscription.php" method="POST">
                 <div class="form-group">
-                  <input type="text" name="info_prenom" id="info_prenom" class="form-control" placeholder="Prénom" required>
+                  <input type="text" name="compteuser_pseudo" id="compteuser_pseudo" class="form-control" placeholder="Pseudo" required>
                 </div>
                 <div class="form-group">
-                  <input type="text" name="info_nom" id="info_nom" class="form-control" placeholder="Nom" required>
+                  <input type="email" name="compteuser_mail" id="compteuser_mail" class="form-control" placeholder="Email" required>
                 </div>
                 <div class="form-group">
-                  <input type="email" name="info_email" id="info_email" class="form-control" placeholder="Email" required>
-                </div>
-                <div class="form-group">
-                  <input type="password" name="info_password" id="info_password" class="form-control" placeholder="Mot de passe" required>
+                  <input type="password" name="compteuser_password" id="compteuser_password" class="form-control" placeholder="Mot de passe" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Valider l'inscription</button>
               </form>

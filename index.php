@@ -20,10 +20,10 @@ include ('includes/inscriptionForm.php');
 
 try {
 	# première étape : je me connecte au serveur
-	$pdo = new PDO("mysql:host=localhost;dbname=entrainementphpbdd", "root");
+	$pdo = new PDO("mysql:host=localhost;dbname=reseaux", "root");
 
 	# seconde étape : j'envoie mes requètes
-	$pdostat = $pdo->query("SELECT * FROM info");
+	$pdostat = $pdo->query("SELECT * FROM compteuser");
 	$pdostat->setFetchMode(PDO::FETCH_ASSOC);
 
     // j'ouvre une balise article qui contiendra toutes les card 
@@ -37,8 +37,8 @@ try {
         echo '<div class="card">
                     <img class="card-img-top" src="images/dsfsf.jpg" alt="Card image cap">
                 <div class="card-body">
-                    <h5 class="card-title">'.$ligne['info_prenom']."   ".$ligne['info_nom'].'</h5>
-                    <p class="card-text">'.$ligne['info_mail'].'</p>
+                    <h5 class="card-title">'.$ligne['compteuser_pseudo'].'</h5>
+                    <p class="card-text">'.$ligne['compteuser_mail'].'</p>
                     <a href="#" class="btn btn-primary">Infos</a></div></div>';
     
     
