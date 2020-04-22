@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 4.9.5
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : mer. 22 avr. 2020 à 11:19
+-- Généré le : mer. 22 avr. 2020 à 13:05
 -- Version du serveur :  5.7.24
 -- Version de PHP : 7.2.19
 
@@ -66,7 +66,7 @@ CREATE TABLE `commentaire` (
 
 CREATE TABLE `compteuser` (
   `compteuser_id` int(11) NOT NULL,
-  `comptuser_pseudo` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `compteuser_pseudo` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `compteuser_password` varchar(8) COLLATE utf8mb4_unicode_ci NOT NULL,
   `compteuser_mail` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `session_id` int(11) NOT NULL,
