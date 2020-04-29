@@ -250,7 +250,7 @@ form {
     }
      
     /* textbox and textarea styles */
- input, textarea {
+ .commentaire input, .commentaire textarea {
     width:80%;
     height:20%;
     background: #E5FCDF;
