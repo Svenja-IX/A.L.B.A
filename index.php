@@ -14,9 +14,6 @@
 include ('inscription.php');
 include ('includes/aside.php');
 include ('includes/header.php');
-include ('includes/connexionForm.php');
-include ('includes/inscriptionForm.php');
-
 
 try {
 	# première étape : je me connecte au serveur

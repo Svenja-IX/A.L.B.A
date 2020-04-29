@@ -1,32 +1,41 @@
-<?php 
+<?php
 
-if (!empty($_POST['compteuser_pseudo']) && !empty($_POST['compteuser_password']) && !empty($_POST['compteuser_mail'])) {
+if (!empty($_POST['compteuser_pseudo']) && !empty($_POST['compteuser_mail']) && !empty($_POST['compteuser_password']) && !empty($_POST['compteuser_confirmpassword'])) {
+	
+	if ($_POST['compteuser_password'] == $_POST['compteuser_confirmpassword']) {
+	
+		try{
+			// connexion à la bdd
+			$sql = new PDO("mysql:host=localhost;dbname=reseaux", "root");
 
-	try{
-		# première étape : je me connecte au serveur
-		$sqlInsc = new PDO("mysql:host=localhost;dbname=reseaux", "root");
+			// preparation de la requête
+			$stmt = $sql->prepare("INSERT INTO `compteuser` (`compteuser_pseudo`, `compteuser_mail`, `compteuser_password`) VALUES (:compteuser_pseudo, :compteuser_mail, :compteuser_password);");
+			
+			// je lui donne les paramètres dont elle a besoin sans en oublier
+			$stmt->bindValue(":compteuser_pseudo", $_POST['compteuser_pseudo']);
+			$stmt->bindValue(":compteuser_mail", $_POST['compteuser_mail']);
+			$stmt->bindValue(":compteuser_password", password_hash($_POST['compteuser_password'], PASSWORD_DEFAULT));
 
-		// je premare ma requête
-		$stmt = $sqlInsc->prepare("INSERT INTO `compteuser` (`compteuser_id`, `compteuser_pseudo`, `compteuser_password`, `compteuser_mail`) VALUES (NULL, ':compteuser_mail', ':compteuser_pseudo', ':compteuser_password')");
-		
-	// je lui donne les paramètres dont elle a besoin sans en oublier
-		$stmt->bindValue(":compteuser_pseudo", $_POST['compteuser_pseudo']);
-		$stmt->bindValue(":compteuser_password", password_hash($_POST['compteuser_password'], PASSWORD_DEFAULT));
-		$stmt->bindValue(":compteuser_mail", $_POST['info_mail']);
+			// j'éxécute
+			$stmt->execute();
+			
+			// si la requete n'aboutit pas (car le mail n'a pas été rentré ou existe deja dans la bdd
+			// il doit être unique, alors la requete ne s'effectue pas, sinon elle s'effectue
+			if($stmt->rowCount()==1){
+				header('Location: index.php?success');
+			} else {
+				header('Location: index.php?fail');
+			}
 
-		// Je l'execute et en fonction de si l'email existe deja ou pas, j'insere ma requete dans la bdd
-		$stmt->execute();
-		
-		// si la requete n'aboutit pas (car le mail n'a pas été rentré car il doit être unique,  
-		// alors la requete ne s'effectue pas, si l'email n'est pas dans la bdd la requete se fais sans soucis
-		if($stmt->rowCount()==1){
-			echo "insertion réussie !";
+			} catch (PDOException $exception){
+				echo $exception->getMessage();
+			}
 		} else {
-			echo "insertion foirée !";
+			header('Location: index.php?errormdp');
 		}
-
-
-		} catch (PDOException $exception){
-			echo $exception->getMessage();
-	}
 }
+?>
+</main>
+<script src="scripts/script.js"></script>
+</body>
+</html>

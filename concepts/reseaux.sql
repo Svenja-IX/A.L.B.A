@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : mer. 22 avr. 2020 à 13:05
+-- Généré le : mer. 29 avr. 2020 à 10:23
 -- Version du serveur :  5.7.24
 -- Version de PHP : 7.2.19
 
@@ -67,10 +67,9 @@ CREATE TABLE `commentaire` (
 CREATE TABLE `compteuser` (
   `compteuser_id` int(11) NOT NULL,
   `compteuser_pseudo` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `compteuser_password` varchar(8) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `compteuser_password` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `compteuser_mail` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `session_id` int(11) NOT NULL,
-  `admin_id` int(11) NOT NULL
+  `admin_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -157,8 +156,8 @@ ALTER TABLE `commentaire`
 --
 ALTER TABLE `compteuser`
   ADD PRIMARY KEY (`compteuser_id`),
-  ADD KEY `compteuser_admin_id` (`admin_id`),
-  ADD KEY `session_id` (`session_id`);
+  ADD UNIQUE KEY `compteuser_mail` (`compteuser_mail`),
+  ADD KEY `compteuser_admin_id` (`admin_id`);
 
 --
 -- Index pour la table `posts`
@@ -188,8 +187,7 @@ ALTER TABLE `reactions`
 -- Index pour la table `session`
 --
 ALTER TABLE `session`
-  ADD PRIMARY KEY (`session_id`),
-  ADD KEY `compteuser_id` (`compteuser_id`);
+  ADD PRIMARY KEY (`session_id`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -217,7 +215,7 @@ ALTER TABLE `commentaire`
 -- AUTO_INCREMENT pour la table `compteuser`
 --
 ALTER TABLE `compteuser`
-  MODIFY `compteuser_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `compteuser_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `posts`
@@ -258,8 +256,7 @@ ALTER TABLE `commentaire`
 -- Contraintes pour la table `compteuser`
 --
 ALTER TABLE `compteuser`
-  ADD CONSTRAINT `compteuser_admin_id` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `session_id` FOREIGN KEY (`session_id`) REFERENCES `session` (`session_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `compteuser_admin_id` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Contraintes pour la table `posts`
@@ -281,12 +278,6 @@ ALTER TABLE `publicite`
 --
 ALTER TABLE `reactions`
   ADD CONSTRAINT `reactions_compteuser_id` FOREIGN KEY (`compteuser_id`) REFERENCES `compteuser` (`compteuser_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Contraintes pour la table `session`
---
-ALTER TABLE `session`
-  ADD CONSTRAINT `compteuser_id` FOREIGN KEY (`compteuser_id`) REFERENCES `compteuser` (`compteuser_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
