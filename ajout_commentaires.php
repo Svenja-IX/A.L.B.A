@@ -18,7 +18,7 @@ $commentaire_texte=$_REQUEST['message'];
 
 
 
-compteuser_id 	reactions_id 	
+// compteuser_id 	reactions_id 	
 
 
 try {
