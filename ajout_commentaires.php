@@ -6,8 +6,8 @@
 commentaire_date 
 commentaire_titre
 commentaire_texte
-
-
+ex 
+commentaires_simples
 */
 
 $commentaire_date=$_REQUEST['date'];
@@ -19,7 +19,7 @@ try {
 			# première étape : je me connecte au serveur
 		$pdo = new PDO("mysql:host=localhost;dbname=reseaux", "root");
           # seconde étape : je prépare, et j'exécute
-        $sql = "INSERT INTO commentaires_simples (commentaire_date, commentaire_titre, commentaire_texte) VALUES (?,?,?)";
+        $sql = "INSERT INTO commentaire (commentaire_date, commentaire_titre, commentaire_texte) VALUES (?,?,?)";
         $stmt= $pdo->prepare($sql);
 		$stmt->execute([$commentaire_date, $commentaire_titre, $commentaire_texte]);
         } catch (PDOException $exception){

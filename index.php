@@ -17,6 +17,8 @@
 				include ('inscription.php');
 				include ('includes/aside.php');
 				include ('includes/header.php');
+				include ('includes/formConnexion.php');
+       		 include ('includes/forminscription.php');
         $afficheArticle=false;
         
 				try {
@@ -53,7 +55,8 @@
         $pubs->setFetchMode(PDO::FETCH_ASSOC);
         
         // Audrey Ajout commentaire d
-        $commentaires = $pdo->query("SELECT * FROM commentaires_simples");
+		$commentaires = $pdo->query("SELECT * FROM commentaire");
+		// $commentaires = $pdo->query("SELECT * FROM commentaires_simples");
         // attention tabal commentaire de test car pb clef etrangere
         $commentaires->setFetchMode(PDO::FETCH_ASSOC);
 				
