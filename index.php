@@ -12,14 +12,13 @@
 		<!-- /Audrey Ajout carousel -->
 	</head>
 	<body>
-	<?php 
-	include ('inscription.php');
-	include ('includes/aside.php');
-	include ('includes/header.php');
-	?>
 		<main>
 			<?php
-
+				include ('inscription.php');
+				include ('includes/aside.php');
+				include ('includes/header.php');
+				include ('includes/connexionForm.php');
+        include ('includes/inscriptionForm.php');
         $afficheArticle=false;
         
 				try {
