@@ -4,8 +4,13 @@
                 <h1>ALBA</h1>
             </div>
             <?php 
-            include ('includes/formInscription.php'); 
-            include ('includes/formConnexion.php'); 
+                if (empty($_SESSION)) {
+                    include ('includes/formInscription.php'); 
+                    include ('includes/formConnexion.php');         
+                }
+                else {
+                    include ('includes/Deconnexion.php');         
+                }
             ?>
             </div>
         </div>

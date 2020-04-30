@@ -27,7 +27,7 @@ if (!empty($_POST['compteuser_mail']) && !empty($_POST['compteuser_password'])) 
 					// ensuite je test si les mdp correspondent entre eux
 					if(password_verify($_POST['compteuser_password'], $utilisateur->compteuser_password)){
 						//echo "vous êtes connectés";
-
+						session_start();
 						// lorsque l'utilisateur se connecte, rempli une variable de session qui sera accessible de partout
 						$_SESSION['user'] = $utilisateur;
 

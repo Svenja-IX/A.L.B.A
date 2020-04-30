@@ -37,5 +37,6 @@ if (!empty($_POST['compteuser_pseudo']) && !empty($_POST['compteuser_mail']) && 
 ?>
 </main>
 <script src="scripts/script.js"></script>
+
 </body>
 </html>

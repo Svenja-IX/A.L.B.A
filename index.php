@@ -1,3 +1,7 @@
+<?php
+	echo session_save_path();
+	session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -58,7 +62,7 @@
         // Audrey Ajout commentaire d
         $commentaires = $pdo->query("SELECT * FROM commentaires_simples");
         // attention tabal commentaire de test car pb clef etrangere
-        $commentaires->setFetchMode(PDO::FETCH_ASSOC);
+        //$commentaires->setFetchMode(PDO::FETCH_ASSOC);
 				
 			?>
 		</main>
@@ -79,7 +83,7 @@
                 <form method="post" action="ajout_commentaires.php">
 					<fieldset>
 						<legend><h2>COMMENTAIRE</h2></legend>
-						<p><label>Dâte</label> <input type="date" id="commentaire_date" name="date" value="2020-04-2020" /></p>
+						<p><label>Dâte</label> <input type="date" id="commentaire_date" name="date" value="2020-04-30" /></p>
 						<p><label>Titre</label> <input type="text" id="commentaire_texte" name="titre" ></p>
 						<p><label for="message">
 						Votre Message</label><textarea name="message" id="commentaire_texte" class="message"placeholder="Type Your message" ></textarea></p>
@@ -95,19 +99,12 @@
 				<?php } ?>
       </ul>
 
-      <!-- Audrey Ajout carousel -->
-			<script
-			src="https://code.jquery.com/jquery-2.2.4.js"
-			integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
-      crossorigin="anonymous"></script>
-      <!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> -->
-      <!-- /Audrey Ajout carousel -->
-
-			<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-			<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-			<!-- Audrey Ajout carousel -->
+	  <!-- Audrey Ajout carousel -->
+	  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 			<script src="scripts/owl.carousel.js"></script>
 			<script src="scripts/script.js"></script>
+			
 		<!-- /Audrey Ajout carousel -->
 	</body>
+	
 </html>

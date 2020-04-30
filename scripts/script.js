@@ -78,6 +78,7 @@ $("#fermerConnexion").click(function(){
 
 
 
+
 // script JS pour caroussel
 // une fois que la page est charge 
 
