@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.5
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : mer. 29 avr. 2020 à 10:23
+-- Généré le : jeu. 30 avr. 2020 à 10:10
 -- Version du serveur :  5.7.24
 -- Version de PHP : 7.2.19
 
@@ -32,6 +32,13 @@ CREATE TABLE `admin` (
   `admin_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Déchargement des données de la table `admin`
+--
+
+INSERT INTO `admin` (`admin_id`) VALUES
+(1);
+
 -- --------------------------------------------------------
 
 --
@@ -54,9 +61,40 @@ CREATE TABLE `commentaire` (
   `commentaire_date` date NOT NULL,
   `commentaire_titre` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
   `commentaire_texte` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `compteuser_id` int(11) NOT NULL,
-  `reactions_id` int(11) NOT NULL
+  `compteuser_id` int(11) DEFAULT NULL,
+  `reactions_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `commentaire`
+--
+
+INSERT INTO `commentaire` (`commentaire_id`, `commentaire_date`, `commentaire_titre`, `commentaire_texte`, `compteuser_id`, `reactions_id`) VALUES
+(1, '2020-04-30', 'titre 1', 'coucou', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `commentaires_simples`
+--
+
+CREATE TABLE `commentaires_simples` (
+  `commentaire_id` int(11) NOT NULL,
+  `commentaire_date` date NOT NULL,
+  `commentaire_titre` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `commentaire_texte` longtext COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `commentaires_simples`
+--
+
+INSERT INTO `commentaires_simples` (`commentaire_id`, `commentaire_date`, `commentaire_titre`, `commentaire_texte`) VALUES
+(11, '2020-04-30', 'test', 'coucou'),
+(12, '2020-04-30', 'titre', 'coucou'),
+(13, '2020-04-29', 'test  new', 'voici '),
+(14, '2020-04-30', 'test', 'coucou'),
+(15, '2020-04-30', 'test', 'test');
 
 -- --------------------------------------------------------
 
@@ -66,10 +104,11 @@ CREATE TABLE `commentaire` (
 
 CREATE TABLE `compteuser` (
   `compteuser_id` int(11) NOT NULL,
-  `compteuser_pseudo` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `compteuser_password` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `comptuser_pseudo` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `compteuser_password` varchar(8) COLLATE utf8mb4_unicode_ci NOT NULL,
   `compteuser_mail` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `admin_id` int(11) DEFAULT NULL
+  `session_id` int(11) NOT NULL,
+  `admin_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -101,6 +140,14 @@ CREATE TABLE `publicite` (
   `publicite_description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `admin_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `publicite`
+--
+
+INSERT INTO `publicite` (`publicite_id`, `publicite_lien`, `publicite_image`, `publicite_description`, `admin_id`) VALUES
+(2, 'https://www.google.fr', 'images/pub1.jpg', 'Pub 1', 1),
+(3, 'https://www.google.fr', 'images/pub2.jpg', 'Pub 2', 1);
 
 -- --------------------------------------------------------
 
@@ -152,12 +199,18 @@ ALTER TABLE `commentaire`
   ADD KEY `reactions_id` (`reactions_id`);
 
 --
+-- Index pour la table `commentaires_simples`
+--
+ALTER TABLE `commentaires_simples`
+  ADD PRIMARY KEY (`commentaire_id`);
+
+--
 -- Index pour la table `compteuser`
 --
 ALTER TABLE `compteuser`
   ADD PRIMARY KEY (`compteuser_id`),
-  ADD UNIQUE KEY `compteuser_mail` (`compteuser_mail`),
-  ADD KEY `compteuser_admin_id` (`admin_id`);
+  ADD KEY `compteuser_admin_id` (`admin_id`),
+  ADD KEY `session_id` (`session_id`);
 
 --
 -- Index pour la table `posts`
@@ -187,7 +240,8 @@ ALTER TABLE `reactions`
 -- Index pour la table `session`
 --
 ALTER TABLE `session`
-  ADD PRIMARY KEY (`session_id`);
+  ADD PRIMARY KEY (`session_id`),
+  ADD KEY `compteuser_id` (`compteuser_id`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -197,7 +251,7 @@ ALTER TABLE `session`
 -- AUTO_INCREMENT pour la table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `categorie`
@@ -209,13 +263,19 @@ ALTER TABLE `categorie`
 -- AUTO_INCREMENT pour la table `commentaire`
 --
 ALTER TABLE `commentaire`
-  MODIFY `commentaire_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `commentaire_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pour la table `commentaires_simples`
+--
+ALTER TABLE `commentaires_simples`
+  MODIFY `commentaire_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT pour la table `compteuser`
 --
 ALTER TABLE `compteuser`
-  MODIFY `compteuser_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `compteuser_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `posts`
@@ -227,7 +287,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT pour la table `publicite`
 --
 ALTER TABLE `publicite`
-  MODIFY `publicite_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `publicite_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `reactions`
@@ -256,7 +316,8 @@ ALTER TABLE `commentaire`
 -- Contraintes pour la table `compteuser`
 --
 ALTER TABLE `compteuser`
-  ADD CONSTRAINT `compteuser_admin_id` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `compteuser_admin_id` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `session_id` FOREIGN KEY (`session_id`) REFERENCES `session` (`session_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Contraintes pour la table `posts`
@@ -278,6 +339,12 @@ ALTER TABLE `publicite`
 --
 ALTER TABLE `reactions`
   ADD CONSTRAINT `reactions_compteuser_id` FOREIGN KEY (`compteuser_id`) REFERENCES `compteuser` (`compteuser_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Contraintes pour la table `session`
+--
+ALTER TABLE `session`
+  ADD CONSTRAINT `compteuser_id` FOREIGN KEY (`compteuser_id`) REFERENCES `compteuser` (`compteuser_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

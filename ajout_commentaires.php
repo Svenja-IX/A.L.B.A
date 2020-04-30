@@ -6,21 +6,15 @@
 commentaire_date 
 commentaire_titre
 commentaire_texte
-
-
+ex 
+commentaires_simples
 */
 
 $commentaire_date=$_REQUEST['date'];
 $commentaire_titre=$_REQUEST['titre'];
 $commentaire_texte=$_REQUEST['message'];
-// $compteuser_id=$_REQUEST[' '];
-// $reactions_id=$_REQUEST[' '];
 
-
-
-compteuser_id 	reactions_id 	
-
-
+// commentaires_simples
 try {
 			# première étape : je me connecte au serveur
 		$pdo = new PDO("mysql:host=localhost;dbname=reseaux", "root");
