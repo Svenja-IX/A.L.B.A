@@ -77,6 +77,25 @@ $("#fermerConnexion").click(function(){
 
 
 
+//------------------------------------
+
+$("#commentaire-btn").click(function(){
+  $('#modalCommentaire').css({
+          "transition": "0.5s",
+          "display": "unset"
+          
+  })
+});
+$("#fermerCommentaire").click(function(){
+  $('#modalCommentaire').css({
+          "transition": "0.5s",
+          "display": "none"
+  })
+});
+
+
+
+
 
 
 // script JS pour caroussel
