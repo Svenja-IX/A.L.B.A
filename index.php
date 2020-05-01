@@ -63,19 +63,7 @@
         <center><h2>Votre commentaire a été ajouté </h2></center>
     <?php } ?>
 
-			<div class ="commentaire">
-                <form method="post" action="ajout_commentaires.php">
-					<fieldset>
-						<legend><h2>COMMENTAIRE</h2></legend>
-						<p><label>Dâte</label> <input type="date" id="commentaire_date" name="date" value="2020-04-30" /></p>
-						<p><label>Titre</label> <input type="text" id="commentaire_texte" name="titre" ></p>
-						<p><label for="message">
-						Votre Message</label><textarea name="message" id="commentaire_texte" class="message"placeholder="Type Your message" ></textarea></p>
-						<input type="submit" id="cancel" value="Annuler" /><br> <input type="submit" id="submit" value="Envoyer" style= border: 1% solid black;/>
-					</div>
-				</fieldset>
-      </form> 
-      
+		
       <h3>Les commentaires</h3>
       <ul>
       <?php foreach($commentaires as $commentaire){   ?>
