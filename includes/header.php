@@ -6,7 +6,8 @@
             <?php 
                 if (empty($_SESSION)) {
                     include ('includes/formInscription.php'); 
-                    include ('includes/formConnexion.php');         
+                    include ('includes/formConnexion.php');    
+                    include ('includes/formCommentaire.php');     
                 }
                 else {
                     include ('includes/Deconnexion.php');         
