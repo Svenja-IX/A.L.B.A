@@ -151,6 +151,18 @@ article {
   background-color: rgba(0,0,0, 10%);
   display: none;
 }
+
+
+#modalCommentaire {
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: rgba(0,0,0, 10%);
+  display: none;
+}
+
+
 #form-bloc {
   width: 100%;
   height: 100%;
@@ -236,55 +248,63 @@ z-index: 5;
 position: absolute;
 }
 
+#commentaire-btn { 
+  left: 100px;
+  top: 25px;
+  z-index: 5;
+  position: absolute;
+  } 
+   
+
 /* commentaire */
 label {
-    display:block;
-    margin-top:1%;
-    letter-spacing: 1.5%;
-    }
-     
-    /* Center the form  */
+  display:block;
+  margin-top:1%;
+  letter-spacing: 1.5%;
+  }
+   
+  /* Center the form  */
 form {
-    margin:0 auto;
-    width:35%;
-    }
-     
-    /* textbox and textarea styles */
- .commentaire input, .commentaire textarea {
-    width:80%;
-    height:20%;
-    background: #E5FCDF;
-    padding:2%;
-    margin-top:1%;
-    color: #4A2A2B;
-    border-radius:7px;
-    border:1px solid green;
-    }
-     
-    /* height for textarea */
- textarea {
-    height: 10%;
-    }
-     
+  margin:0 auto;
+  width:35%;
+  }
+   
+  /* textbox and textarea styles */
+.commentaire input, .commentaire textarea {
+  width:80%;
+  height:20%;
+  background: #E5FCDF;
+  padding:2%;
+  margin-top:1%;
+  color: #4A2A2B;
+  border-radius:7px;
+  border:1px solid green;
+  }
+   
+  /* height for textarea */
+textarea {
+  height: 10%;
+  }
+   
 /* Border style on focus */
-    input:focus, textarea:focus {
-    border:0.5% solid #97d6eb;
-    }
-     
- /* submit button styles */
-    #submit {
-    width: 80%;
-    height:20%;
-    margin-top:4%;
-    margin-bottom: 10%;
-    cursor:pointer;
-    color:#363E3F;
-    }
-     
-    /* Change button looks on hover */
-    #submit:hover {
-    opacity:0.5;
-    }
+  input:focus, textarea:focus {
+  border:0.5% solid #97d6eb;
+  }
+   
+/* submit button styles */
+  #submit {
+  width: 80%;
+  height:20%;
+  margin-top:4%;
+  margin-bottom: 10%;
+  cursor:pointer;
+  color:#363E3F;
+  }
+   
+  /* Change button looks on hover */
+  #submit:hover {
+  opacity:0.5;
+  }
 
 
     /* Caroussel */
