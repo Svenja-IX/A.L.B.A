@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : jeu. 30 avr. 2020 à 10:10
+-- Généré le : lun. 04 mai 2020 à 17:04
 -- Version du serveur :  5.7.24
 -- Version de PHP : 7.2.19
 
@@ -70,7 +70,20 @@ CREATE TABLE `commentaire` (
 --
 
 INSERT INTO `commentaire` (`commentaire_id`, `commentaire_date`, `commentaire_titre`, `commentaire_texte`, `compteuser_id`, `reactions_id`) VALUES
-(1, '2020-04-30', 'titre 1', 'coucou', NULL, NULL);
+(1, '2020-04-30', 'titre 1', 'coucou', NULL, NULL),
+(2, '2020-04-30', 'titre', 'coucouc', NULL, NULL),
+(3, '2020-04-30', 'voici', 'hello', NULL, NULL),
+(4, '2020-04-30', 'test', 'coucou', NULL, NULL),
+(5, '2020-04-30', 'coucou', 'voici', NULL, NULL),
+(6, '2020-04-30', 'titre', 'coucou', NULL, NULL),
+(7, '2020-05-01', 'Lorry', 'Lorry Ca VA', NULL, NULL),
+(8, '2020-05-01', 'c est le premier Mai', 'Bon 1er MAI', NULL, NULL),
+(9, '2020-05-01', 'test2', 'TEST 2', NULL, NULL),
+(10, '2020-05-04', 'coucou', 'coucou2', NULL, NULL),
+(11, '2020-05-04', 'coucou tata', 'test new', NULL, NULL),
+(12, '2020-05-04', 'titre doco', 'doc', NULL, NULL),
+(13, '2020-05-04', 'coucou', 'tata', NULL, NULL),
+(14, '2020-05-04', 'coucou', 'merci A vous tous', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -104,12 +117,20 @@ INSERT INTO `commentaires_simples` (`commentaire_id`, `commentaire_date`, `comme
 
 CREATE TABLE `compteuser` (
   `compteuser_id` int(11) NOT NULL,
-  `comptuser_pseudo` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `compteuser_password` varchar(8) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `compteuser_pseudo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `compteuser_password` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `compteuser_mail` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `session_id` int(11) NOT NULL,
-  `admin_id` int(11) NOT NULL
+  `session_id` int(11) DEFAULT NULL,
+  `admin_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `compteuser`
+--
+
+INSERT INTO `compteuser` (`compteuser_id`, `compteuser_pseudo`, `compteuser_password`, `compteuser_mail`, `session_id`, `admin_id`) VALUES
+(1, 'cocote', '$2y$10$LCD5uXAqv3o76hjhIev8r.TOGWf/hB5wgtnqZjj8eauU3P.wulftO', 'fdelprino@hotmail.fr', NULL, NULL),
+(2, 'feedusud', '$2y$10$yZcnACxw2QJpNHTighzmYeb3Ygo6eRNryawHSiRnRxU257S8tI4T.', 'audreymedici@gmail.com', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -263,7 +284,7 @@ ALTER TABLE `categorie`
 -- AUTO_INCREMENT pour la table `commentaire`
 --
 ALTER TABLE `commentaire`
-  MODIFY `commentaire_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `commentaire_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT pour la table `commentaires_simples`
@@ -275,7 +296,7 @@ ALTER TABLE `commentaires_simples`
 -- AUTO_INCREMENT pour la table `compteuser`
 --
 ALTER TABLE `compteuser`
-  MODIFY `compteuser_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `compteuser_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `posts`
