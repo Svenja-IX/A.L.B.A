@@ -59,11 +59,11 @@
 			</div>
 		</section>
     
-    <?php if ( isset($_REQUEST['ajout_commentaire']) ) { ?>
+	<?php if ( isset($_REQUEST['ajout_commentaire']) ) { ?>
+		<!-- j'inclus le commentaire uen fois qu'il est entre -->
         <center><h2>Votre commentaire a été ajouté </h2></center>
     <?php } ?>
 
-		
       <h3>Les commentaires</h3>
       <ul>
       <?php foreach($commentaires as $commentaire){   ?>
@@ -75,7 +75,6 @@
 	  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 			<script src="scripts/owl.carousel.js"></script>
 			<script src="scripts/script.js"></script>
-			
 		<!-- /Audrey Ajout carousel -->
 	</body>
 	
