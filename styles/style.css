@@ -1,5 +1,6 @@
 body {
-    background: white;
+    background: rgb(30,30,30);
+    color: white;
     height: auto;
 }
 header {
@@ -11,6 +12,7 @@ header {
     border-bottom: solid 0.5px white;
     top: 0;
     z-index: 1000;
+    color: rgb(15,15,15);
 }
 
 .btn-primary {
@@ -266,7 +268,6 @@ label {
   /* Center the form  */
 form {
   margin:0 auto;
-  width:35%;
   }
    
   /* textbox and textarea styles */
@@ -311,5 +312,6 @@ textarea {
    
 /* Pubs */
 #les-promos{
-	text-align:center;
+  text-align:center;
+  margin-top: 30px;
 }
