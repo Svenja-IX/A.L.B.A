@@ -1,7 +1,6 @@
 <?php
 
 
-// inserer les champs du formulaire HTML dans BDD de My SQL 
 /* Champs table commentairtes :
 commentaire_date 
 commentaire_titre
@@ -10,9 +9,9 @@ ex
 commentaires_simples
 */
 
-$commentaire_date=$_REQUEST['date'];
-$commentaire_titre=$_REQUEST['titre'];
-$commentaire_texte=$_REQUEST['message'];
+$commentaire_date=$_REQUEST['commentaire_date'];
+$commentaire_titre=$_REQUEST['commentaire_titre'];
+$commentaire_texte=$_REQUEST['commentaire_texte'];
 
 // commentaires_simples
 try {
